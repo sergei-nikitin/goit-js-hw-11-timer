@@ -8,10 +8,11 @@ const refs = {
     secs: document.querySelector('span[data-value="secs"]'),
 }
 class CountdownTimer { 
-    constructor({selector, targetDate, onTick }) { 
+    constructor({selector, targetDate, onTick, refs }) { 
       this.intervalId = null;
       this.targetDate = targetDate;
       this.onTick = onTick;
+      this.refs = refs;
     }
     start() {
         this.intervalId = setInterval(() => {
@@ -36,10 +37,18 @@ class CountdownTimer {
 
 
 const timer = new CountdownTimer({
+  // refs: {
+  //   days: document.querySelector('span[data-value="days"]'),
+  //   hours: document.querySelector('span[data-value="hours"]'),
+  //   mins: document.querySelector('span[data-value="mins"]'),
+  //   secs: document.querySelector('span[data-value="secs"]'),
+  // },
   selector: '#timer-1', 
   targetDate: new Date('Nov 30, 2020'),
   onTick: updateClockface,
+  refs: refs,
 });
+
 
 
 function updateClockface({ days, hours, mins, secs }) {
